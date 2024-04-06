@@ -8,6 +8,8 @@ const Registration = () => {
   const [degree, setDegree] = useState("");
   const [institution, setInstitution] = useState("");
   const [year, setYear] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,6 +27,10 @@ const Registration = () => {
       setInstitution(value);
     } else if (name === "year") {
       setYear(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "phone") {
+      setPhone(value);
     }
   };
 
@@ -39,6 +45,8 @@ const Registration = () => {
       degree,
       institution,
       year,
+      email,
+      phone,
     });
     setFirstName("");
     setLastName("");
@@ -47,6 +55,8 @@ const Registration = () => {
     setDegree("");
     setInstitution("");
     setYear("");
+    setEmail("");
+    setPhone("");
   };
 
   return (
@@ -108,20 +118,23 @@ const Registration = () => {
               name="licenseId"
               type="text"
               required
-              className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ringindigo-500 focus:border-indigo-500"
               value={licenseId}
               onChange={handleChange}
             />
           </div>
+          {/* Education fields */}
           <div className="flex flex-col">
-            <label htmlFor="education" className="textsm-text-gray-700">
+            <label
+              htmlFor="education"
+              className="text-sm font-medium text-gray-700"
+            >
               Education
             </label>
             <input
               id="education"
               name="education"
               type="text"
-              required
               className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               value={education}
               onChange={handleChange}
@@ -138,7 +151,6 @@ const Registration = () => {
               id="degree"
               name="degree"
               type="text"
-              required
               className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               value={degree}
               onChange={handleChange}
@@ -155,7 +167,6 @@ const Registration = () => {
               id="institution"
               name="institution"
               type="text"
-              required
               className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               value={institution}
               onChange={handleChange}
@@ -168,17 +179,54 @@ const Registration = () => {
             <input
               id="year"
               name="year"
-              type="text"
-              required
+              type="number"
+              min="1900"
+              max={new Date().getFullYear()}
               className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               value={year}
               onChange={handleChange}
             />
           </div>
-          <div className="col-span-2">
+          {/* Email and phone fields */}
+          <div className="flex flex-col">
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              value={email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="phone"
+              className="text-sm font-medium text-gray-700"
+            >
+              Phone
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              value={phone}
+              onChange={handleChange}
+            />
+          </div>
+          {/* Submit button */}
+          <div className="flex items-center justify-end mt-4">
             <button
               type="submit"
-              className="w-full px-4 py-2 bg-blue-600 text-white font-bold text-base rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-4 py-2 bg-blue-60            focus:ring-offset-2 focus:ring-indigo-500"
             >
               Register
             </button>
@@ -191,210 +239,4 @@ const Registration = () => {
 
 export default Registration;
 
-// import React, { useState } from "react";
 
-// const Registration = () => {
-//   const [step, setStep] = useState(1);
-//   const [firstName, setFirstName] = useState("");
-//   const [lastName, setLastName] = useState("");
-//   const [licenseId, setLicenseId] = useState("");
-//   const [education, setEducation] = useState("");
-//   const [degree, setDegree] = useState("");
-//   const [institution, setInstitution] = useState("");
-//   const [year, setYear] = useState("");
-
-//   const handleChange = (event) => {
-//     const { name, value } = event.target;
-//     if (name === "firstName") {
-//       setFirstName(value);
-//     } else if (name === "lastName") {
-//       setLastName(value);
-//     } else if (name === "licenseId") {
-//       setLicenseId(value);
-//     } else if (name === "education") {
-//       setEducation(value);
-//     } else if (name === "degree") {
-//       setDegree(value);
-//     } else if (name === "institution") {
-//       setInstitution(value);
-//     } else if (name === "year") {
-//       setYear(value);
-//     }
-//   };
-
-//   const handleNext = () => {
-//     // Perform validation (optional)
-//     setStep(step + 1);
-//   };
-
-//   const handleBack = () => {
-//     setStep(step - 1);
-//   };
-
-//   const renderStep = () => {
-//     switch (step) {
-//       case 1:
-//         return (
-//           <>
-//             <h2>Basic Information</h2>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="firstName"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 First Name
-//               </label>
-//               <input
-//                 id="firstName"
-//                 name="firstName"
-//                 type="text"
-//                 autoComplete="given-name"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={firstName}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="lastName"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 Last Name
-//               </label>
-//               <input
-//                 id="lastName"
-//                 name="lastName"
-//                 type="text"
-//                 autoComplete="family-name"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={lastName}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="licenseId"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 License ID
-//               </label>
-//               <input
-//                 id="licenseId"
-//                 name="licenseId"
-//                 type="text"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={licenseId}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <button
-//               onClick={handleNext}
-//               className="w-full px-4 py-2 bg-blue-600 text-white font-bold text-base rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-//             >
-//               Next
-//             </button>
-//           </>
-//         );
-//       case 2:
-//         return (
-//           <>
-//             <h2>Education Details</h2>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="education"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 Education
-//               </label>
-//               <input
-//                 id="education"
-//                 name="education"
-//                 type="text"
-//                 required
-//                 className="px-3 py-2 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={education}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="degree"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 Degree
-//               </label>
-//               <input
-//                 id="degree"
-//                 name="degree"
-//                 type="text"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={degree}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="institution"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 Institution
-//               </label>
-//               <input
-//                 id="institution"
-//                 name="institution"
-//                 type="text"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={institution}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <div className="flex flex-col space-y-2">
-//               <label
-//                 htmlFor="year"
-//                 className="text-sm font-medium text-gray-700"
-//               >
-//                 Year of Completion
-//               </label>
-//               <input
-//                 id="year"
-//                 name="year"
-//                 type="number"
-//                 required
-//                 className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-//                 value={year}
-//                 onChange={handleChange}
-//               />
-//             </div>
-//             <button
-//               onClick={handleBack}
-//               className="w-full px-4 py-2 bg-gray-300 text-white font-bold text-base rounded-md hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-//             >
-//               Back
-//             </button>
-//             <button
-//               onClick={handleNext}
-//               className="w-full px-4 py-2 bg-blue-600 text-white font-bold text-base rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-//             >
-//               Next
-//             </button>
-//           </>
-//         );
-//       default:
-//         return (
-//           <>
-//             <h2>Registration Complete!</h2>
-//             {/* Implement form submission logic here */}
-//           </>
-//         );
-//     }
-//   };
-
-//   return <div className="container mx-auto p-4">{renderStep()}</div>;
-// };
-
-// export default Registration;
