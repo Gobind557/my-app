@@ -134,6 +134,15 @@ const experts = [
     ratings: 4.8,
     charges: 160,
   },
+  {
+    id: 6,
+    name: "Dr. Olivia Peters",
+    imageUrl: "https://via.placeholder.com/150", // Replace with actual image URL
+    specialization: "Eating Disorders",
+    experience: 6,
+    ratings: 4.8,
+    charges: 160,
+  },
 ];
 
 const MentalHealthExperts = () => {
@@ -142,20 +151,18 @@ const MentalHealthExperts = () => {
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-800">
         Mental Health Experts
       </h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4 px-4">
-        {" "}
-        
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-4">  {/* Responsive grid columns */}
         {experts.map((expert) => (
-        <li
-        key={expert.id}
-        className="expert-card bg-white rounded-lg shadow-md overflow-hidden aspect-ratio-auto w-85"  
+          <li
+            key={expert.id}
+            className="expert-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col sm:flex-row items-start p-4 w-full"  
           >
             <img
               src={expert.imageUrl}
               alt={expert.name}
-              className="w-full h-20 object-cover"
+              className="w-16 h-16 rounded-full mr-4 object-cover self-start"  
             />
-            <div className="p-4">
+            <div className="flex-grow ml-4">  {/* Flex-grow & margin for spacing */}
               <h3 className="text-lg font-medium text-gray-900">
                 {expert.name}
               </h3>
@@ -174,7 +181,7 @@ const MentalHealthExperts = () => {
                 <ClockIcon className="h-4 w-4 mr-2" /> {/* Charges icon */}
                 <span>₹{expert.charges}/hour</span>
               </div>
-              <button className="btn btn-primary mt-4 text-green-500 border border-green-500 font-bold px-4 py-2 rounded-md hover:bg-green-100">
+              <button className="btn btn-primary mt-4 text-green-500 border border-green-500 font-bold px-4 py-2 rounded-md hover:bg-green-100 self-end">  {/* Align button on smaller screens */}
                 Book Appointment
               </button>
             </div>
