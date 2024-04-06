@@ -142,13 +142,13 @@ const MentalHealthExperts = () => {
       <h1 className="text-3xl font-bold text-center mb-8 text-yellow-800">
         Mental Health Experts
       </h1>
-      <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-4 px-4">
         {" "}
-        {/* Changed grid-cols to 3 */}
+        
         {experts.map((expert) => (
-          <li
-            key={expert.id}
-            className="expert-card bg-white rounded-lg shadow-md overflow-hidden aspect-ratio-auto"
+        <li
+        key={expert.id}
+        className="expert-card bg-white rounded-lg shadow-md overflow-hidden aspect-ratio-auto w-85"  
           >
             <img
               src={expert.imageUrl}
