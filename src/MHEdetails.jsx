@@ -4,23 +4,10 @@ const expertData = {
   image: "https://via.placeholder.com/150",
   name: "John Doe",
   profession: "Web Developer",
-  rating: 4,
+  rating: 3, // Example rating with decimals
   numReviews: 10,
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod lorem ac quam tincidunt rutrum. Donec at leo leo. Vivamus at magna non sapien tincidunt consectetur a vel justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec vel magna non sapien tincidunt consectetur. Pellentesque eget ultrices odio.",
-};
-
-const ReviewProgress = ({ numReviews }) => {
-  const progress = Math.min(numReviews, 5) * 20; // Calculate progress based on reviews (max 5)
-
-  return (
-    <div className="flex items-center mt-2">
-      <span className="text-gray-600 mr-2">{numReviews} Reviews</span>
-      <div className="w-full bg-gray-200 rounded-full h-2">
-        <div className={`bg-green-500 rounded-full h-2 w-${progress}%`} />
-      </div>
-    </div>
-  );
 };
 
 const ExpertProfile = () => {
@@ -58,23 +45,27 @@ const ExpertProfile = () => {
           </div>
         </div>
       </div>
-      {/* Rating container outside with 1/4 width and desired height */}
-      <div className="flex flex-col items-start border border-gray-900 rounded-md px-4 py-4 shadow-sm mt-4 mx-8 w-1/3 h-45">
-        {" "}
-        {/* Added height class */}
+      {/* Rating container outside with 1/3 width and desired height */}
+      <div className="flex flex-col items-center border border-gray-900 rounded-md px-4 py-4 shadow-sm mt-4 mx-8 w-1/3 h-45">
+        {/* Title 'Ratings' */}
+        <h3 className="text-lg font-bold text-gray-800 mb-2">Ratings</h3>
+        {/* Rating number on top with two decimals, centered using 'mx-auto' */}
+        <h2 className="text-2xl font-bold  mx-auto mb-2">
+          {expertData.rating.toFixed(2)}
+        </h2>
         <div className="flex items-center">
-          {" "}
-          {/* Limited width */}
+          {/* Increased star size using font-size and margin */}
           {Array(5)
             .fill(null)
             .map((_, index) => (
-              <span key={index} className="text-yellow-500 mr-1">
+              <span
+                key={index}
+                className="text-yellow-500 mr-1 text-2xl" // Increased font-size and margin
+              >
                 {index < starCount ? "★" : "☆"}
               </span>
             ))}
-          <span className="text-gray-600 ml-2">{expertData.rating}</span>
         </div>
-        <ReviewProgress numReviews={expertData.numReviews} />
       </div>
     </>
   );
